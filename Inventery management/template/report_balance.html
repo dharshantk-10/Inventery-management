@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Balance Report — Product / Warehouse / Qty</h2>
+<p class="text-muted">Only non-zero balances shown.</p>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr><th>Product</th><th>Warehouse</th><th>Qty</th></tr>
+  </thead>
+  <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r.product.name }} ({{ r.product.sku }})</td>
+        <td>{{ r.location.name }} ({{ r.location.code }})</td>
+        <td>{{ r.qty }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="3" class="text-center">No balances (all zero)</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
